@@ -1,8 +1,12 @@
 package com.example.shop.product;
 
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class ProductRepository {
@@ -15,22 +19,30 @@ public class ProductRepository {
     }
 
     public List<Product> findAll(){
-        return em.createQuery("SELECT m FROM Product m", Product.class)
+        return em.createQuery("SELECT p FROM Product p", Product.class)
                 .getResultList();
     }
 
-    public Product findByProductNumber(String ProductNumber){
-        List<Product> result = em.createQuery(
-                "SELECT m FROM m WHERE m.ProductNumber = :ProductNumber", Product.class
-        ).setParameter("ProductNumber", ProductNumber).getResultList();
-
-        return result.isEmpty() ? null : result.get(0);
+    public List<Product> findByName(String name){
+       return em.createQuery(
+                "SELECT p FROM Product p WHERE p.name = :name", Product.class
+        ).setParameter("name", name).getResultList();
     }
 
-    public void save(Product product) { em.persist(product); }
+    @Transactional
+    public void save(Product product) {
+        if (product.getId() == null) {
+            em.persist(product);
+        } else {
+            em.merge(product);
+        }
+    }
 
-    public void deleteById(Long id){
-        Product product = em.find(Product.class, id);
-        em.remove(product);
+    @Transactional
+    public void deleteById(Long id) {
+        Product product = findById(id);
+        if (product != null) {
+            em.remove(product);
+        }
     }
 }

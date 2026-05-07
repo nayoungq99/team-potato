@@ -1,9 +1,10 @@
 package com.example.shop.product;
 
+import com.example.shop.product.dto.ProductCreateRequest;
+import com.example.shop.product.dto.ProductUpdateRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -40,7 +41,7 @@ public class ProductController {
     public ResponseEntity<Void> updateProduct(
             @PathVariable Long productId,
             @RequestBody ProductUpdateRequest request) {
-        productService.UpdateProduct(productId, request);
+        productService.updateProduct(productId, request);
         return ResponseEntity.ok().build();
     }
 

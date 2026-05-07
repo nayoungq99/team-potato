@@ -1,4 +1,4 @@
-package com.example.shop.order;
+/* package com.example.shop.order;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -34,3 +34,7 @@ public class OrderRepository {
         em.remove(order);
     }
 }
+
+
+
+ */

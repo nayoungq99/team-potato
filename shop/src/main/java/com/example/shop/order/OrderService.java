@@ -1,4 +1,4 @@
-package com.example.shop.order;
+/* package com.example.shop.order;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -57,3 +57,6 @@ public class OrderService {
         orderRepository.deleteById(id);
     }
 }
+
+
+ */
