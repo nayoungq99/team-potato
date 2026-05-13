@@ -3,7 +3,6 @@ package com.example.shop.member;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.sql.exec.spi.StandardEntityInstanceResolver;
 
 @Entity
 
@@ -53,5 +52,9 @@ public class Member {
         if(address != null){
             this.address = address;
         }
+    }
+
+    public void setId(Long id){
+        this.id = id;
     }
 }

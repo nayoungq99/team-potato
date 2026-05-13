@@ -10,10 +10,18 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MemberService {
+public class MemberServiceImpl implements MemberService {
 
+    //private final MemberRepository memberRepository = new JpaMemberRepository();
+    // 메모리 저장소 필요할 때는 아래 사용
+    // private final MemberRepository memberRepository = new MemoryMemberRepository();
     private final MemberRepository memberRepository;
 
+    // 멤버서비스는 멤버레포지토리 필요하므로 외부에서 멤버레포지토리에 구현체 넣어달라, 주입 통로
+//    public MemberService(@Qualifier("mainMemberRepository") MemberRepository memberRepository) {
+//       this.memberRepository = memberRepository;
+//    }
+    @Override
     @Transactional
     public Long createMember(MemberCreateRequest request) {
         Member existingMember = memberRepository.findByLoginId(request.getLoginId());
@@ -33,12 +41,14 @@ public class MemberService {
         return member.getId();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<Member> getAllMembers() {
         return memberRepository.findAll();
     }
 
-    //@Transactional(readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public Member getMemberById(Long id) {
         Member member = memberRepository.findById(id);
 
@@ -48,6 +58,8 @@ public class MemberService {
 
         return member;
     }
+
+    @Override
     @Transactional
     public void UpdateMember(Long id, MemberUpdateRequest request) {
         Member member = memberRepository.findById(id);
@@ -59,6 +71,7 @@ public class MemberService {
         member.updateInfo(request.getPassword(), request.getPhoneNumber(), request.getAddress());
     }
 
+    @Override
     @Transactional
     public void deleteMember(Long id) {
         Member member = memberRepository.findById(id);

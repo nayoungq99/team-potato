@@ -2,10 +2,9 @@ package com.example.shop.member;
 
 import com.example.shop.member.dto.MemberCreateRequest;
 import com.example.shop.member.dto.MemberUpdateRequest;
+import com.example.shop.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -42,7 +41,7 @@ public class MemberController {
     public ResponseEntity<Void> updateMember(
             @PathVariable Long memberId,
             @RequestBody MemberUpdateRequest request) {
-        memberService.UpdateMember(memberId, request);
+        memberService.updateMember(memberId, request);
         return ResponseEntity.ok().build();
     }
 
