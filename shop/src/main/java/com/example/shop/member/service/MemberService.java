@@ -1,7 +1,8 @@
-package com.example.shop.member;
+package com.example.shop.member.service;
 
 import com.example.shop.member.dto.MemberCreateRequest;
 import com.example.shop.member.dto.MemberUpdateRequest;
+import com.example.shop.member.entity.Member;
 
 import java.util.List;
 

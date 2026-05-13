@@ -1,4 +1,6 @@
-package com.example.shop.member;
+package com.example.shop.member.repository;
+
+import com.example.shop.member.entity.Member;
 
 import java.util.List;
 

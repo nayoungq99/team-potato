@@ -1,5 +1,6 @@
-package com.example.shop.product;
+package com.example.shop.product.repository;
 
+import com.example.shop.product.entity.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 

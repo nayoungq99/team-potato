@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 public class TestConfig {
 
-//    @Bean
+//   @Bean
 //    MyBean myBean() {
-//        return new MyBean();
+//       return new MyBean();
 //    }
 }

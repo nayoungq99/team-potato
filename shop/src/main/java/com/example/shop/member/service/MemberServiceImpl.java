@@ -1,7 +1,9 @@
-package com.example.shop.member;
+package com.example.shop.member.service;
 
 import com.example.shop.member.dto.MemberCreateRequest;
 import com.example.shop.member.dto.MemberUpdateRequest;
+import com.example.shop.member.entity.Member;
+import com.example.shop.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,7 +63,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public void UpdateMember(Long id, MemberUpdateRequest request) {
+    public void updateMember(Long id, MemberUpdateRequest request) {
         Member member = memberRepository.findById(id);
 
         if (member == null) {

@@ -1,8 +1,8 @@
-package com.example.shop.member;
+package com.example.shop.member.repository;
 
+import com.example.shop.member.entity.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 //@Qualifier("mainMemberRepository")
 @Primary
-public class JpaMemberRepository implements MemberRepository{
+public class JpaMemberRepository implements MemberRepository {
 
     @PersistenceContext
     private EntityManager em;

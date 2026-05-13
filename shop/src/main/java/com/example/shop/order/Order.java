@@ -1,7 +1,7 @@
 package com.example.shop.order;
 
-import com.example.shop.member.Member;
-import com.example.shop.product.Product;
+import com.example.shop.member.entity.Member;
+import com.example.shop.product.entity.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
