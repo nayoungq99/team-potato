@@ -4,6 +4,10 @@ import com.example.shop.member.entity.Member;
 import com.example.shop.member.dto.MemberCreateRequest;
 import com.example.shop.member.dto.MemberUpdateRequest;
 import com.example.shop.member.service.MemberService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/members")
+@Tag(name = "회원 관리", description = "회원 CRUD API")
 
 public class MemberController {
 
@@ -21,7 +26,9 @@ public class MemberController {
 
 
     @PostMapping
-    public ResponseEntity<Void> createMember(@RequestBody MemberCreateRequest request) {
+    @Operation(summary = "회원 생성", description = "새로운 회원을 등록합니다.")
+    @ApiResponse(responseCode = "400", description = "잘못된 요청 (유효성 검사 실패 또는 중복된 로그인 아이디)")
+    public ResponseEntity<Void> createMember(@RequestBody @Valid MemberCreateRequest request) {
         Long memberId = memberService.createMember(request);
         return ResponseEntity.created(URI.create("/members/" + memberId)).build();
     }
@@ -41,7 +48,7 @@ public class MemberController {
     @PatchMapping("/{memberId}")
     public ResponseEntity<Void> updateMember(
             @PathVariable Long memberId,
-            @RequestBody MemberUpdateRequest request) {
+            @RequestBody @Valid MemberUpdateRequest request) {
         memberService.updateMember(memberId, request);
         return ResponseEntity.ok().build();
     }

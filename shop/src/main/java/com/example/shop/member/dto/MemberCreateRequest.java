@@ -12,7 +12,6 @@ import lombok.Getter;
 @Getter
 public class MemberCreateRequest {
 
-
     @NotNull(message = ErrorMessage.LOGIN_ID_NOT_NULL)
     @Size(min = 4, max = 20, message = ErrorMessage.LOGIN_ID_SIZE)
     private String loginId;
@@ -22,7 +21,7 @@ public class MemberCreateRequest {
     private String password;
 
     @NotNull(message = "전화번호는 필수입니다.")
-    @Pattern(regexp = "^010-\\d{4}-\\d{4}$", message = "전화번호 형식은 010-xxxx-xxxx입니다.")
+    @Pattern(regexp = "^010-\\d{4}-\\d{4}$", message = "전화번호 형식은 010-xxxx-xxxx입니다." )
     private String phoneNumber;
 
     @NotNull(message = "주소는 필수입니다.")
